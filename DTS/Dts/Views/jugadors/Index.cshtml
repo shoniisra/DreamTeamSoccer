@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Dts.jugador>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @ViewBag.Title
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.jugnombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jugfechanac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jugsexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jugposicion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jugreputacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jugemail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jugcontraseña)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jugnombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jugfechanac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jugsexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jugposicion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jugreputacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jugemail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jugcontraseña)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.jugid }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.jugid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.jugid })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

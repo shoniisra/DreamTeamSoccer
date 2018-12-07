@@ -1,0 +1,82 @@
+﻿@model Dts.jugador
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>jugador</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.jugnombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.jugnombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.jugfechanac)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.jugfechanac)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.jugsexo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.jugsexo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.jugposicion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.jugposicion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.jugreputacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.jugreputacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.jugemail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.jugemail)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.jugcontraseña)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.jugcontraseña)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.jugid }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="soccerdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cancha">
+    <Key>
+      <PropertyRef Name="idcancha" />
+    </Key>
+    <Property Name="idcancha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cannombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="canarea" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="candireccion" Type="String" MaxLength="270" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="candisponibilidad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="canreputacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="partidoes" Relationship="Self.fk_partido_cancha1" FromRole="cancha" ToRole="partido" />
+  </EntityType>
+  <EntityType Name="jugador">
+    <Key>
+      <PropertyRef Name="jugid" />
+    </Key>
+    <Property Name="jugid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="jugnombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jugfechanac" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="jugsexo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="jugposicion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="jugreputacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="jugemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="jugcontraseña" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="partidoes" Relationship="Self.partido_has_jugador" FromRole="jugador" ToRole="partido" />
+  </EntityType>
+  <EntityType Name="partido">
+    <Key>
+      <PropertyRef Name="parid" />
+    </Key>
+    <Property Name="parid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="partitulo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="parhora" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cancha_idcancha" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cancha" Relationship="Self.fk_partido_cancha1" FromRole="partido" ToRole="cancha" />
+    <NavigationProperty Name="jugadors" Relationship="Self.partido_has_jugador" FromRole="partido" ToRole="jugador" />
+  </EntityType>
+  <Association Name="fk_partido_cancha1">
+    <End Role="cancha" Type="Self.cancha" Multiplicity="1" />
+    <End Role="partido" Type="Self.partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cancha">
+        <PropertyRef Name="idcancha" />
+      </Principal>
+      <Dependent Role="partido">
+        <PropertyRef Name="cancha_idcancha" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="partido_has_jugador">
+    <End Role="jugador" Type="Self.jugador" Multiplicity="*" />
+    <End Role="partido" Type="Self.partido" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="soccerdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="canchas" EntityType="Self.cancha" />
+    <EntitySet Name="jugadors" EntityType="Self.jugador" />
+    <EntitySet Name="partidoes" EntityType="Self.partido" />
+    <AssociationSet Name="fk_partido_cancha1" Association="Self.fk_partido_cancha1">
+      <End Role="cancha" EntitySet="canchas" />
+      <End Role="partido" EntitySet="partidoes" />
+    </AssociationSet>
+    <AssociationSet Name="partido_has_jugador" Association="Self.partido_has_jugador">
+      <End Role="jugador" EntitySet="jugadors" />
+      <End Role="partido" EntitySet="partidoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

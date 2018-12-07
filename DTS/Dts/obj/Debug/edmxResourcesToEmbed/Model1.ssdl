@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="soccerdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cancha">
+    <Key>
+      <PropertyRef Name="idcancha" />
+    </Key>
+    <Property Name="idcancha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cannombre" Type="varchar" MaxLength="45" />
+    <Property Name="canarea" Type="varchar" MaxLength="45" />
+    <Property Name="candireccion" Type="varchar" MaxLength="270" Nullable="false" />
+    <Property Name="candisponibilidad" Type="varchar" MaxLength="45" />
+    <Property Name="canreputacion" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="jugador">
+    <Key>
+      <PropertyRef Name="jugid" />
+    </Key>
+    <Property Name="jugid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="jugnombre" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="jugfechanac" Type="date" Nullable="false" />
+    <Property Name="jugsexo" Type="varchar" MaxLength="45" />
+    <Property Name="jugposicion" Type="varchar" MaxLength="45" />
+    <Property Name="jugreputacion" Type="varchar" MaxLength="45" />
+    <Property Name="jugemail" Type="varchar" MaxLength="45" />
+    <Property Name="jugcontraseña" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="partido">
+    <Key>
+      <PropertyRef Name="parid" />
+    </Key>
+    <Property Name="parid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="partitulo" Type="varchar" MaxLength="45" />
+    <Property Name="parhora" Type="date" Nullable="false" />
+    <Property Name="cancha_idcancha" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="partido_has_jugador">
+    <Key>
+      <PropertyRef Name="partido_parid" />
+      <PropertyRef Name="jugador_jugid" />
+    </Key>
+    <Property Name="partido_parid" Type="int" Nullable="false" />
+    <Property Name="jugador_jugid" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_partido_cancha1">
+    <End Role="cancha" Type="Self.cancha" Multiplicity="1" />
+    <End Role="partido" Type="Self.partido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cancha">
+        <PropertyRef Name="idcancha" />
+      </Principal>
+      <Dependent Role="partido">
+        <PropertyRef Name="cancha_idcancha" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_partido_has_jugador_jugador1">
+    <End Role="jugador" Type="Self.jugador" Multiplicity="1" />
+    <End Role="partido_has_jugador" Type="Self.partido_has_jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jugador">
+        <PropertyRef Name="jugid" />
+      </Principal>
+      <Dependent Role="partido_has_jugador">
+        <PropertyRef Name="jugador_jugid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_partido_has_jugador_partido">
+    <End Role="partido" Type="Self.partido" Multiplicity="1" />
+    <End Role="partido_has_jugador" Type="Self.partido_has_jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="partido">
+        <PropertyRef Name="parid" />
+      </Principal>
+      <Dependent Role="partido_has_jugador">
+        <PropertyRef Name="partido_parid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="soccerdbModelStoreContainer">
+    <EntitySet Name="cancha" EntityType="Self.cancha" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jugador" EntityType="Self.jugador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="partido" EntityType="Self.partido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="partido_has_jugador" EntityType="Self.partido_has_jugador" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_partido_cancha1" Association="Self.fk_partido_cancha1">
+      <End Role="cancha" EntitySet="cancha" />
+      <End Role="partido" EntitySet="partido" />
+    </AssociationSet>
+    <AssociationSet Name="fk_partido_has_jugador_jugador1" Association="Self.fk_partido_has_jugador_jugador1">
+      <End Role="jugador" EntitySet="jugador" />
+      <End Role="partido_has_jugador" EntitySet="partido_has_jugador" />
+    </AssociationSet>
+    <AssociationSet Name="fk_partido_has_jugador_partido" Association="Self.fk_partido_has_jugador_partido">
+      <End Role="partido" EntitySet="partido" />
+      <End Role="partido_has_jugador" EntitySet="partido_has_jugador" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

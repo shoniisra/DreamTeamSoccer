@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="soccerdbModelStoreContainer" CdmEntityContainer="soccerdbEntities">
+    <EntitySetMapping Name="canchas">
+      <EntityTypeMapping TypeName="soccerdbModel.cancha">
+        <MappingFragment StoreEntitySet="cancha">
+          <ScalarProperty Name="idcancha" ColumnName="idcancha" />
+          <ScalarProperty Name="cannombre" ColumnName="cannombre" />
+          <ScalarProperty Name="canarea" ColumnName="canarea" />
+          <ScalarProperty Name="candireccion" ColumnName="candireccion" />
+          <ScalarProperty Name="candisponibilidad" ColumnName="candisponibilidad" />
+          <ScalarProperty Name="canreputacion" ColumnName="canreputacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jugadors">
+      <EntityTypeMapping TypeName="soccerdbModel.jugador">
+        <MappingFragment StoreEntitySet="jugador">
+          <ScalarProperty Name="jugid" ColumnName="jugid" />
+          <ScalarProperty Name="jugnombre" ColumnName="jugnombre" />
+          <ScalarProperty Name="jugfechanac" ColumnName="jugfechanac" />
+          <ScalarProperty Name="jugsexo" ColumnName="jugsexo" />
+          <ScalarProperty Name="jugposicion" ColumnName="jugposicion" />
+          <ScalarProperty Name="jugreputacion" ColumnName="jugreputacion" />
+          <ScalarProperty Name="jugemail" ColumnName="jugemail" />
+          <ScalarProperty Name="jugcontraseña" ColumnName="jugcontraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="partidoes">
+      <EntityTypeMapping TypeName="soccerdbModel.partido">
+        <MappingFragment StoreEntitySet="partido">
+          <ScalarProperty Name="parid" ColumnName="parid" />
+          <ScalarProperty Name="partitulo" ColumnName="partitulo" />
+          <ScalarProperty Name="parhora" ColumnName="parhora" />
+          <ScalarProperty Name="cancha_idcancha" ColumnName="cancha_idcancha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="partido_has_jugador" TypeName="soccerdbModel.partido_has_jugador" StoreEntitySet="partido_has_jugador">
+      <EndProperty Name="jugador">
+        <ScalarProperty Name="jugid" ColumnName="jugador_jugid" />
+      </EndProperty>
+      <EndProperty Name="partido">
+        <ScalarProperty Name="parid" ColumnName="partido_parid" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

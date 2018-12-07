@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Dts.partido>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.partitulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parhora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cancha.cannombre)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.partitulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.parhora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cancha.cannombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.parid }) |
+                @Html.ActionLink("Details", "Details", new { id=item.parid }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.parid })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

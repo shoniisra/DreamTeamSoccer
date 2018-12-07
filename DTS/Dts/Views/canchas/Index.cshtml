@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Dts.cancha>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cannombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.canarea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.candireccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.candisponibilidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.canreputacion)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cannombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.canarea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.candireccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.candisponibilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.canreputacion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.idcancha }) |
+                @Html.ActionLink("Details", "Details", new { id=item.idcancha }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.idcancha })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

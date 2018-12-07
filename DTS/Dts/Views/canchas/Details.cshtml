@@ -1,0 +1,66 @@
+﻿@model Dts.cancha
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>cancha</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.cannombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cannombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.canarea)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.canarea)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.candireccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.candireccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.candisponibilidad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.candisponibilidad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.canreputacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.canreputacion)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idcancha }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
